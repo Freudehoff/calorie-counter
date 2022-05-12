@@ -19,14 +19,25 @@ const clearButton = document.querySelector('.form__reset-button');
 const counterForm = document.querySelector('.counter__form');
 const counterResult = document.querySelector('.counter__result');
 
-const weightMaintenanceMale = (10 * weight) + (6.25 * height) - (5 * age) + 5; //формула поддеражния веса для мужчин
-const weightMaintenanceFemale = (10 * weight) + (6.25 * height) - (5 * age) - 161; //формула поддеражния веса для женщин
+const maintenance = counterResult.querySelector('#calories-norm');
+const loss = counterResult.querySelector('#calories-minimal');
+const gain = counterResult.querySelector('#calories-maximal');
 
-const minimalActivityIndex = 1.2;
-const lowActivityIndex = 1.375;
-const mediumActivityIndex = 1.55;
-const highActivityIndex = 1.725;
-const maximalActivityIndex = 1.9;
+const activity = document.querySelectorAll('input[name="activity"]');
+
+const weightMaintenanceMale = (10 * weight.value) + (6.25 * height.value) - (5 * age.value) + 5; // формула поддеражния веса для мужчин
+const weightLossMale = weightMaintenanceMale - (weightMaintenanceMale * 0.15); // формула сброса веса для мужчин
+const weightGainMale = weightMaintenanceMale + (weightMaintenanceMale * 0.15); // формула набора веса для мужчин
+
+const weightMaintenanceFemale = (10 * weight.value) + (6.25 * height.value) - (5 * age.value) - 161; // формула поддеражния веса для женщин
+const weightLossFemale = weightMaintenanceFemale - (weightMaintenanceFemale * 0.15); // формула сброса веса для женщин
+const weightGainFemale = weightMaintenanceFemale + (weightMaintenanceFemale * 0.15); // формула набора веса для женщин
+
+minimalActivity.value = 1.2; // коэффициенты активности
+lowActivity.value = 1.375;
+mediumActivity.value = 1.55;
+highActivity.value = 1.725;
+maximalActivity.value = 1.9;
 
 physicalParameters.oninput = function(event) {
     
@@ -55,3 +66,6 @@ clearButton.onclick = function() {
     calculateButton.setAttribute('disabled', 'disabled');
 }
 
+if (male.checked) {
+
+}
