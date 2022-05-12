@@ -23,23 +23,21 @@ const maintenance = counterResult.querySelector('#calories-norm');
 const loss = counterResult.querySelector('#calories-minimal');
 const gain = counterResult.querySelector('#calories-maximal');
 
-const activity = document.querySelectorAll('input[name="activity"]');
 
-const weightMaintenanceMale = (10 * weight.value) + (6.25 * height.value) - (5 * age.value) + 5; // формула поддеражния веса для мужчин
-const weightLossMale = weightMaintenanceMale - (weightMaintenanceMale * 0.15); // формула сброса веса для мужчин
-const weightGainMale = weightMaintenanceMale + (weightMaintenanceMale * 0.15); // формула набора веса для мужчин
 
 const weightMaintenanceFemale = (10 * weight.value) + (6.25 * height.value) - (5 * age.value) - 161; // формула поддеражния веса для женщин
 const weightLossFemale = weightMaintenanceFemale - (weightMaintenanceFemale * 0.15); // формула сброса веса для женщин
 const weightGainFemale = weightMaintenanceFemale + (weightMaintenanceFemale * 0.15); // формула набора веса для женщин
 
-minimalActivity.value = 1.2; // коэффициенты активности
-lowActivity.value = 1.375;
-mediumActivity.value = 1.55;
-highActivity.value = 1.725;
-maximalActivity.value = 1.9;
+const minimalActivityIndex = 1.2; // коэффициенты активности
+const lowActivityIndex = 1.375;
+const mediumActivityIndex = 1.55;
+const highActivityIndex = 1.725;
+const maximalActivityIndex = 1.9;
 
 physicalParameters.oninput = function(event) {
+
+    const weightMaintenanceMale = (10 * weight.value) + (6.25 * height.value) - (5 * age.value) + 5; // формула поддеражния веса для мужчин
     
     if (age.value >  0 && height.value > 0 && weight.value > 0) {
         calculateButton.removeAttribute('disabled');
@@ -52,11 +50,33 @@ physicalParameters.oninput = function(event) {
     if (target.value > 0) {
         clearButton.removeAttribute('disabled');
     }
-}
 
-calculateButton.onclick = function(event) {
-    event.preventDefault();
-    counterResult.classList.remove('counter__result--hidden');
+    calculateButton.onclick = function(event) {
+        event.preventDefault();
+        counterResult.classList.remove('counter__result--hidden');
+
+        if (minimalActivity.checked) {
+            var weightMaintenance = weightMaintenanceMale * minimalActivityIndex;
+        }
+        if (lowActivity.checked) {
+            var weightMaintenance = weightMaintenanceMale * lowActivityIndex;
+        }
+        if (mediumActivity.checked) {
+            var weightMaintenance = weightMaintenanceMale * mediumActivityIndex;
+        }
+        if (highActivity.checked) {
+            var weightMaintenance = weightMaintenanceMale * highActivityIndex;
+        }
+        if (maximalActivity.checked) {
+            var weightMaintenance = weightMaintenanceMale * maximalActivityIndex;
+        }
+
+        const weightLoss = weightMaintenance - (weightMaintenance * 0.15);
+        const weightGain = weightMaintenance + (weightMaintenance * 0.15);
+        maintenance.textContent = weightMaintenance.toFixed(2);
+        loss.textContent = weightLoss.toFixed(2);
+        gain.textContent = weightGain.toFixed(2);
+    }
 }
 
 clearButton.onclick = function() {
@@ -64,8 +84,4 @@ clearButton.onclick = function() {
     counterResult.classList.add('counter__result--hidden');
     this.setAttribute('disabled', 'disabled');
     calculateButton.setAttribute('disabled', 'disabled');
-}
-
-if (male.checked) {
-
 }
