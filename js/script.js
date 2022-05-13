@@ -1,4 +1,3 @@
-const male = document.querySelector('#gender-male');
 const female = document.querySelector('#gender-female');
 
 const physicalParameters = document.querySelector('.inputs-group');
@@ -23,12 +22,6 @@ const maintenance = counterResult.querySelector('#calories-norm');
 const loss = counterResult.querySelector('#calories-minimal');
 const gain = counterResult.querySelector('#calories-maximal');
 
-
-
-const weightMaintenanceFemale = (10 * weight.value) + (6.25 * height.value) - (5 * age.value) - 161; // формула поддеражния веса для женщин
-const weightLossFemale = weightMaintenanceFemale - (weightMaintenanceFemale * 0.15); // формула сброса веса для женщин
-const weightGainFemale = weightMaintenanceFemale + (weightMaintenanceFemale * 0.15); // формула набора веса для женщин
-
 const minimalActivityIndex = 1.2; // коэффициенты активности
 const lowActivityIndex = 1.375;
 const mediumActivityIndex = 1.55;
@@ -38,6 +31,7 @@ const maximalActivityIndex = 1.9;
 physicalParameters.oninput = function(event) {
 
     const weightMaintenanceMale = (10 * weight.value) + (6.25 * height.value) - (5 * age.value) + 5; // формула поддеражния веса для мужчин
+    const weightMaintenanceFemale = (10 * weight.value) + (6.25 * height.value) - (5 * age.value) - 161; // формула поддеражния веса для женщин
     
     if (age.value >  0 && height.value > 0 && weight.value > 0) {
         calculateButton.removeAttribute('disabled');
@@ -57,18 +51,33 @@ physicalParameters.oninput = function(event) {
 
         if (minimalActivity.checked) {
             var weightMaintenance = weightMaintenanceMale * minimalActivityIndex;
+            if (female.checked) {
+                weightMaintenance = weightMaintenanceFemale * minimalActivityIndex;
+            }
         }
         if (lowActivity.checked) {
             var weightMaintenance = weightMaintenanceMale * lowActivityIndex;
+            if (female.checked) {
+                weightMaintenance = weightMaintenanceFemale * lowActivityIndex;
+            }
         }
         if (mediumActivity.checked) {
             var weightMaintenance = weightMaintenanceMale * mediumActivityIndex;
+            if (female.checked) {
+                weightMaintenance = weightMaintenanceFemale * mediumActivityIndex;
+            }
         }
         if (highActivity.checked) {
             var weightMaintenance = weightMaintenanceMale * highActivityIndex;
+            if (female.checked) {
+                weightMaintenance = weightMaintenanceFemale * highActivityIndex;
+            }
         }
         if (maximalActivity.checked) {
             var weightMaintenance = weightMaintenanceMale * maximalActivityIndex;
+            if (female.checked) {
+                weightMaintenance = weightMaintenanceFemale * maximalActivityIndex;
+            }
         }
 
         const weightLoss = weightMaintenance - (weightMaintenance * 0.15);
