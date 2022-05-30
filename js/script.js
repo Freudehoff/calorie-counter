@@ -50,31 +50,31 @@ physicalParameters.oninput = function(event) {
         counterResult.classList.remove('counter__result--hidden');
 
         if (minimalActivity.checked) {
-            var weightMaintenance = weightMaintenanceMale * minimalActivityIndex;
+            weightMaintenance = weightMaintenanceMale * minimalActivityIndex;
             if (female.checked) {
                 weightMaintenance = weightMaintenanceFemale * minimalActivityIndex;
             }
         }
         if (lowActivity.checked) {
-            var weightMaintenance = weightMaintenanceMale * lowActivityIndex;
+            weightMaintenance = weightMaintenanceMale * lowActivityIndex;
             if (female.checked) {
                 weightMaintenance = weightMaintenanceFemale * lowActivityIndex;
             }
         }
         if (mediumActivity.checked) {
-            var weightMaintenance = weightMaintenanceMale * mediumActivityIndex;
+            weightMaintenance = weightMaintenanceMale * mediumActivityIndex;
             if (female.checked) {
                 weightMaintenance = weightMaintenanceFemale * mediumActivityIndex;
             }
         }
         if (highActivity.checked) {
-            var weightMaintenance = weightMaintenanceMale * highActivityIndex;
+            weightMaintenance = weightMaintenanceMale * highActivityIndex;
             if (female.checked) {
                 weightMaintenance = weightMaintenanceFemale * highActivityIndex;
             }
         }
         if (maximalActivity.checked) {
-            var weightMaintenance = weightMaintenanceMale * maximalActivityIndex;
+            weightMaintenance = weightMaintenanceMale * maximalActivityIndex;
             if (female.checked) {
                 weightMaintenance = weightMaintenanceFemale * maximalActivityIndex;
             }
