@@ -39,9 +39,7 @@ physicalParameters.oninput = function(event) {
         calculateButton.setAttribute('disabled', 'disabled');
     }
 
-    const target = event.target;
-
-    if (target.value > 0) {
+    if (event.target.value > 0) {
         clearButton.removeAttribute('disabled');
     }
 
