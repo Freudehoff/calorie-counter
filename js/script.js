@@ -28,12 +28,12 @@ const mediumActivityIndex = 1.55;
 const highActivityIndex = 1.725;
 const maximalActivityIndex = 1.9;
 
-physicalParameters.oninput = function(event) {
+physicalParameters.oninput = function (event) {
 
     const weightMaintenanceMale = (10 * weight.value) + (6.25 * height.value) - (5 * age.value) + 5; // формула поддеражния веса для мужчин
     const weightMaintenanceFemale = (10 * weight.value) + (6.25 * height.value) - (5 * age.value) - 161; // формула поддеражния веса для женщин
-    
-    if (age.value >  0 && height.value > 0 && weight.value > 0) {
+
+    if (age.value > 0 && height.value > 0 && weight.value > 0) {
         calculateButton.removeAttribute('disabled');
     } else {
         calculateButton.setAttribute('disabled', 'disabled');
@@ -43,7 +43,7 @@ physicalParameters.oninput = function(event) {
         clearButton.removeAttribute('disabled');
     }
 
-    calculateButton.onclick = function(event) {
+    calculateButton.onclick = function (event) {
         event.preventDefault();
         counterResult.classList.remove('counter__result--hidden');
 
@@ -86,7 +86,7 @@ physicalParameters.oninput = function(event) {
     }
 }
 
-clearButton.onclick = function() {
+clearButton.onclick = function () {
     counterForm.reset();
     counterResult.classList.add('counter__result--hidden');
     this.setAttribute('disabled', 'disabled');
